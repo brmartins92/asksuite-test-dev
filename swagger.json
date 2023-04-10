@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de busca de reservas de hotel"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/search": {
+      "post": {
+        "summary": "Buscar reservas de hotel",
+        "description": "Endpoint para buscar reservas de hotel disponíveis em um período.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados da reserva a ser buscada",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "checkin": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "Data de check-in da reserva (no formato YYYY-MM-DD)"
+                },
+                "checkout": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "Data de check-out da reserva (no formato YYYY-MM-DD)"
+                }
+              },
+              "required": [
+                "checkin",
+                "checkout"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reservas encontradas com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "URL da imagem do hotel"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Nome do hotel"
+                  },
+                  "price": {
+                    "type": "string",
+                    "description": "Preço total da reserva"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Descrição do hotel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        },
+        "examples": {
+          "application/json": {
+            "checkin": "2023-06-01",
+            "checkout": "2023-06-06"
+          }
+        }
+      }
+    }
+  }
+}
