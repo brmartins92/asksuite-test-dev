@@ -15,7 +15,7 @@ class RunGetAllRoom {
     return `${monthFormatted}/${dayFormatted}/${yearFormatted}`;
   }
 
-  async setInputType (page) {
+  async setInputValue (page) {
     const date = this.setTransformerDateToCalendar();
     const checkin = this.checkin;
     const checkout = this.checkout;
@@ -37,7 +37,6 @@ class RunGetAllRoom {
     await buttonHandle.click();
   };
 
-  // Obter lista de quartos disponíveis
   async getAvailableRooms (page) {
     await page.waitForSelector('#tblAcomodacoes');
 
@@ -76,10 +75,9 @@ class RunGetAllRoom {
     const browser = await this.browser.getBrowser();
     let page = await browser.newPage();
     await page.goto('https://pratagy.letsbook.com.br/D/Busca');
-    await this.setInputType(page);
+    await this.setInputValue(page);
     await this.enableSearchButton(page);
       
-    // Verificar se há disponibilidade
     const existModalUnavailability = await this.checkUnavailabilityModal(page);
 
     if (existModalUnavailability) {
