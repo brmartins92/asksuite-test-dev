@@ -79,7 +79,7 @@ Already installed: `express` `puppeteer` `dotenv`
 ## Running
 * Install dependencies with: `npm install`
 * Run as dev: `npm run dev`
-
+* Swagger /api-docs
 Default port is set to `8080`
 
 ## Assets
