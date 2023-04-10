@@ -43,7 +43,7 @@ class RunGetAllRoom {
     const rooms = await page.$$eval('#tblAcomodacoes > tbody > tr', trNodes => {
       return Array.from(trNodes).map(tr => ({
         image: tr.querySelector('img[data-src]').dataset.src,
-        name: tr.querySelector('span.quartoNome').textContent,
+        name: tr.querySelector('span.quartoNome').textContent.toUpperCase(),
         price: tr.querySelector('span.valorFinal').textContent,
         description: tr.querySelector('div.quartoDescricao p').textContent,
       }));
